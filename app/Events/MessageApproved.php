@@ -4,12 +4,14 @@ namespace App\Events;
 
 use App\Models\Message;
 use Illuminate\Broadcasting\Channel;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\SerializesModels;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class MessageApproved implements ShouldBroadcast
+
+
+class MessageApproved implements ShouldBroadcastNow
 {
     use InteractsWithSockets, SerializesModels;
 
@@ -22,12 +24,22 @@ class MessageApproved implements ShouldBroadcast
 
     public function broadcastOn()
     {
-        return new Channel('messages');
+        return new PrivateChannel('messages.' . $this->message->receiver_id);
     }
 
     public function broadcastAs()
     {
         return 'MessageApproved';
     }
+
+    public function broadcastWith()
+    {
+        return [
+            'id' => $this->message->id,
+            'content' => $this->message->content,
+            'status' => $this->message->status,
+        ];
+    }
 }
+
 

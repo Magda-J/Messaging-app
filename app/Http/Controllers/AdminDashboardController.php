@@ -31,7 +31,7 @@ class AdminDashboardController extends Controller
             return response()->json(['message' => 'Unauthorized'], 403);
         }
 
-        $message->update(['status' => 'approved']);
+        $message->update(['status' => 'completed']);
 
 
         broadcast(new MessageApproved($message))->toOthers();

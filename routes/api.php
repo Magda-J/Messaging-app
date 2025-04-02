@@ -4,9 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminAuthController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PusherAuthController;
 use App\Http\Controllers\PusherController;
 
 // Public Routes

@@ -23,7 +23,7 @@ class MessageApproved implements ShouldBroadcastNow
 
     public function broadcastOn()
     {
-        return new PrivateChannel('messages.' . $this->message->receiver_id);
+        return new PrivateChannel('messages.' . $this->message->sender_id);
     }
 
     public function broadcastAs()

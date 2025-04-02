@@ -6,11 +6,11 @@ use App\Models\Message;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 
 
-class MessageApproved implements ShouldBroadcastNow
+class MessageApproved implements ShouldBroadcast
 {
     use InteractsWithSockets, SerializesModels;
 
